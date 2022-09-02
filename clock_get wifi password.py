@@ -1,4 +1,4 @@
-import subprocess, re, smtplib, os
+import subprocess, re, smtplib, os, sys
 from tkinter import *
 from time import *
 from PIL import ImageTk, Image
@@ -67,6 +67,11 @@ def main():
         date_label.config(text= date_string)
 
         window.after(1000, update)
+
+    try:
+        os.chdir(os.path.dirname(sys.argv[0]))
+    except OSError:
+        pass
 
     # get_wifi_passwords()
 
